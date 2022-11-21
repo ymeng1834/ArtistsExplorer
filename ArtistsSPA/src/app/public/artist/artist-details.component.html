@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4 p-3">
+            <h3>{{artist?.name}}</h3>
+            <img src={{artist?.imageUrl}} class="img-fluid" alt="profile pic">
+            <ul>
+                <li>{{artist?.followers}} followers on Spotify</li>
+                <li *ngFor="let genre of artist?.genres">{{genre.name}}</li>
+            </ul>
+        </div>
+        <div class="col-8 p-3">
+            <div class="row">
+                <div class="d-flex justify-content-between">
+                    <h3>Albums</h3>
+                    <div class="hstack gap-1">
+                        <button class="btn btn-outline-dark" (click)="navigate(albums?.pageIndex,true,false)" [disabled]="!albums?.hasPreviousPage">&lsaquo;</button>
+                        <button class="btn btn-outline-dark" (click)="navigate(albums?.pageIndex,true,true)" [disabled]="!albums?.hasNextPage">&rsaquo;</button>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-xl-3" *ngFor="let album of albums?.data">
+                    <a routerLink="/albums/{{album.spotifyId}}" style="text-decoration: none; color: black;">
+                        <div class="card mb-4">
+                            <img src="{{album.coverUrl}}" class="card-img-top" alt="album cover">
+                            <div class="card-body p-2">
+                                <h6 class="card-title m-0">{{album.name}}</h6>
+                                <p class="card-text">{{album.releaseDate}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-flex justify-content-between">
+                    <h3>Singles</h3>
+                    <div class="hstack gap-1">
+                        <button class="btn btn-outline-dark" (click)="navigate(singles?.pageIndex,false,false)" [disabled]="!singles?.hasPreviousPage">&lsaquo;</button>
+                        <button class="btn btn-outline-dark" (click)="navigate(singles?.pageIndex,false,true)" [disabled]="!singles?.hasNextPage">&rsaquo;</button>
+                    </div>
+                </div>
+                <div class="col-6 col-sm-4 col-xl-3" *ngFor="let single of singles?.data">
+                    <a routerLink="/albums/{{single.spotifyId}}" style="text-decoration: none; color: black;">
+                        <div class="card mb-4">
+                            <img src="{{single.coverUrl}}" class="card-img-top" alt="album cover">
+                            <div class="card-body p-2">
+                                <h6 class="card-title m-0">{{single.name}}</h6>
+                                <p class="card-text">{{single.releaseDate}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

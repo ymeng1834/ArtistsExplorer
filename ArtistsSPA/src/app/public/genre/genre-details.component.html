@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4 p-3">
+            <h3>{{genre?.name}}</h3>
+            <button class="btn btn-light" (click)="updateArtists(subgenre.id, subgenre.name)" *ngFor="let subgenre of genre?.subgenres">
+                {{subgenre.name}}
+            </button>
+        </div>
+        <div class="col-8 p-3">
+            <h3>{{title}}</h3>
+            <div class="row">
+                <div class="col-6 col-sm-4 col-xl-3" *ngFor="let artist of artists?.data">
+                    <a routerLink="/artists/{{artist.spotifyId}}" style="text-decoration: none; color: black;">
+                        <div class="card mb-4">
+                            <img src={{artist.imageUrl}} class="card-img-top" alt="profile pic">
+                            <div class="card-body p-2">
+                                <h6 class="card-title m-0">{{artist.name}}</h6>
+                              </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" (click)="prevPage(artists?.pageIndex)" [disabled]="!artists?.hasPreviousPage">&laquo; Previous</button>
+                <button class="btn btn-primary" (click)="nextPage(artists?.pageIndex)" [disabled]="!artists?.hasNextPage">Next &raquo;</button>
+            </div>
+        </div>
+    </div>
+</div>
