@@ -23,7 +23,7 @@ namespace Infrastructure.Services
         {
             var genres = await _genreRepository.GetAllGenres();
             var genresList = new List<GenreModel>();
-            genresList.AddRange(genres.Select(g => new GenreModel { Id = g.Id, Name = g.Name }));
+            genresList.AddRange(genres.Select(g => new GenreModel { Id = g.Id, Name = g.Name, Icon = g.Icon }));
             return genresList;
         }
 
@@ -70,8 +70,14 @@ namespace Infrastructure.Services
         public async Task<GenreDetailsModel> GetGenreDetails(int genreId)
         {
             var genre = await _genreRepository.GetById(genreId);
-            var genreDetails = new GenreDetailsModel { Id = genre.Id, Name = genre.Name };
-            genreDetails.Subgenres.AddRange(genre.SubgenresOfGenre.Select(s => new GenreModel { Id = s.Id, Name = s.Name }));
+            var genreDetails = new GenreDetailsModel {
+                Id = genre.Id,
+                Name = genre.Name,
+                Icon = genre.Icon,
+                Overview = genre.Overview,
+                ExternalUrl = genre.ExternalUrl
+            };
+            genreDetails.Subgenres.AddRange(genre.SubgenresOfGenre.Select(s => new SubgenreModel { Id = s.Id, Name = s.Name, ParentId = s.ParentGenreId }));
             return genreDetails;
         }
 

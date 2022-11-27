@@ -7,11 +7,15 @@ namespace ApplicationCore.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public List<GenreModel> Subgenres { get; set; }
+		public string Icon { get; set; }
+		public string Overview { get; set; }
+		public string ExternalUrl { get; set; }
+		
+		public List<SubgenreModel> Subgenres { get; set; }
 
 		public GenreDetailsModel()
 		{
-			Subgenres = new List<GenreModel>();
+			Subgenres = new List<SubgenreModel>();
 		}
 	}
 }

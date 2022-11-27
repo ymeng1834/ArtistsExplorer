@@ -1,11 +1,8 @@
-<div class="container-fluid p-4">
-    <div class="row">
-        <div class="col-6 col-lg-3 col-sm-4 col-xl-2" *ngFor="let genre of genres">
-            <a routerLink="/genres/{{genre.id}}">
-                <div class="card mb-4">
-                    <p>{{genre.name}}</p>
-                </div>
-            </a>
-        </div>
+<div class="container-fluid" *ngIf="genres">
+    <div class="row align-items-center" style="min-height:95vh">
+        <div class="d-inline px-5 py-3">
+            <h1 class="mb-4">Dive deep into...</h1>
+            <a class="me-4" *ngFor="let genre of genres" routerLink="/genres/{{genre.id}}">{{genre.name}}<span class="fs-6">&nbsp;</span>{{genre.icon}}</a>
+        </div>   
     </div>
 </div>

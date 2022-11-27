@@ -1,49 +1,63 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-4 p-3">
-            <h3>{{artist?.name}}</h3>
-            <img src={{artist?.imageUrl}} class="img-fluid" alt="profile pic">
-            <ul>
-                <li>{{artist?.followers}} followers on Spotify</li>
-                <li *ngFor="let genre of artist?.genres">{{genre.name}}</li>
-            </ul>
-        </div>
-        <div class="col-8 p-3">
-            <div class="row">
-                <div class="d-flex justify-content-between">
-                    <h3>Albums</h3>
-                    <div class="hstack gap-1">
-                        <button class="btn btn-outline-dark" (click)="navigate(albums?.pageIndex,true,false)" [disabled]="!albums?.hasPreviousPage">&lsaquo;</button>
-                        <button class="btn btn-outline-dark" (click)="navigate(albums?.pageIndex,true,true)" [disabled]="!albums?.hasNextPage">&rsaquo;</button>
-                    </div>
+<div class="container-fluid pt-5 px-5" *ngIf="artist && albums && singles">
+    <div class="row" style="min-height:95vh">
+        <div class="col-5 px-4">
+            <div class="card me-4">
+                <img src='{{artist.imageUrl}}' class="card-img-top" alt="profile pic">
+                <div class="card-body d-inline">
+                    <h1>{{artist.name}}</h1>
+                    <p class="m-0">◆ {{artist.followers | number:'1.0':'en-US'}} followers on Spotify</p>
+                    <span>◆ Related music genres: </span><a *ngFor="let subgenre of artist.genres" routerLink="/genres/{{subgenre.parentId}}/subgenres/{{subgenre.id}}" class="genre me-2">{{subgenre.name}}</a>
                 </div>
-                <div class="col-6 col-sm-4 col-xl-3" *ngFor="let album of albums?.data">
+            </div>
+        </div>
+        <div class="col-7">
+            <div class="mb-2 d-flex justify-content-between align-items-top">
+                <h3>Albums</h3>
+                <div>
+                    <button class="me-2 mb-2" (click)="navigate(albums.pageIndex,true,false)" [disabled]="!albums.hasPreviousPage">&laquo; previous</button>
+                    <button (click)="navigate(albums.pageIndex,true,true)" [disabled]="!albums.hasNextPage">next &raquo;</button>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                <div class="col" *ngFor="let album of albums.data">
                     <a routerLink="/albums/{{album.spotifyId}}" style="text-decoration: none; color: black;">
-                        <div class="card mb-4">
-                            <img src="{{album.coverUrl}}" class="card-img-top" alt="album cover">
-                            <div class="card-body p-2">
-                                <h6 class="card-title m-0">{{album.name}}</h6>
-                                <p class="card-text">{{album.releaseDate}}</p>
+                        <div class="card">
+                            <div class="row g-0">
+                              <div class="col-md-5">
+                                <img class="img-fluid" src="{{album.coverUrl}}" alt="album cover">
+                              </div>
+                              <div class="col-md-7">
+                                <div class="card-body">
+                                  <h6 class="card-title m-0">{{album.name}}</h6>
+                                  <p class="card-text"><small class="text-muted">{{album.releaseDate}}</small></p>
+                                </div>
+                              </div>
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="row">
-                <div class="d-flex justify-content-between">
-                    <h3>Singles</h3>
-                    <div class="hstack gap-1">
-                        <button class="btn btn-outline-dark" (click)="navigate(singles?.pageIndex,false,false)" [disabled]="!singles?.hasPreviousPage">&lsaquo;</button>
-                        <button class="btn btn-outline-dark" (click)="navigate(singles?.pageIndex,false,true)" [disabled]="!singles?.hasNextPage">&rsaquo;</button>
-                    </div>
+            <div class="mb-2 d-flex justify-content-between align-items-top">
+                <h3>EPs</h3>
+                <div>
+                    <button class="me-2 mb-2" (click)="navigate(singles.pageIndex,false,false)" [disabled]="!singles.hasPreviousPage">&laquo; previous</button>
+                    <button (click)="navigate(singles.pageIndex,false,true)" [disabled]="!singles.hasNextPage">next &raquo;</button>
                 </div>
-                <div class="col-6 col-sm-4 col-xl-3" *ngFor="let single of singles?.data">
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mb-5">
+                <div class="col" *ngFor="let single of singles.data">
                     <a routerLink="/albums/{{single.spotifyId}}" style="text-decoration: none; color: black;">
-                        <div class="card mb-4">
-                            <img src="{{single.coverUrl}}" class="card-img-top" alt="album cover">
-                            <div class="card-body p-2">
-                                <h6 class="card-title m-0">{{single.name}}</h6>
-                                <p class="card-text">{{single.releaseDate}}</p>
+                        <div class="card">
+                            <div class="row g-0">
+                              <div class="col-md-5">
+                                <img class="img-fluid" src="{{single.coverUrl}}" alt="album cover">
+                              </div>
+                              <div class="col-md-7">
+                                <div class="card-body">
+                                  <h6 class="card-title m-0">{{single.name}}</h6>
+                                  <p class="card-text"><small class="text-muted">{{single.releaseDate}}</small></p>
+                                </div>
+                              </div>
                             </div>
                         </div>
                     </a>

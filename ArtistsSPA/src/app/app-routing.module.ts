@@ -6,10 +6,16 @@ import { GenreDetailsComponent } from './public/genre/genre-details.component';
 import { GenreComponent } from './public/genre/genre.component';
 
 const routes: Routes = [
-  {path: "", component: GenreComponent},
-  {path: "genres/:genreId", component: GenreDetailsComponent},
-  {path: "artists/:artistId", component: ArtistDetailsComponent},
-  {path: "albums/:albumId", component: AlbumDetailsComponent}
+  { path: "", component: GenreComponent },
+  {
+    path: "genres/:genreId",
+    children: [
+      { path: "", component: GenreDetailsComponent },
+      { path: "subgenres/:subgenreId", component: GenreDetailsComponent }
+    ]
+  },
+  { path: "artists/:artistId", component: ArtistDetailsComponent },
+  { path: "albums/:albumId", component: AlbumDetailsComponent }
 ];
 
 @NgModule({

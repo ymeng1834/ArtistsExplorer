@@ -56,7 +56,7 @@ namespace Infrastructure.Services
                 Followers = artist.Followers.Total
             };
             fullArtist.Genres.AddRange(artistWithGenres.SubgenresOfArtist
-                .Select(sa => new GenreModel { Id = sa.SubgenreId, Name = sa.Subgenre.Name }));
+                .Select(sa => new SubgenreModel { Id = sa.SubgenreId, Name = sa.Subgenre.Name, ParentId = sa.Subgenre.ParentGenreId }));
 
             return fullArtist;
         }

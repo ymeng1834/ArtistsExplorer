@@ -1,22 +1,22 @@
-<div class="container-fluid">
-    <div class="row">
-        <h3>{{album?.name}}</h3>
-        <div class="col-4 p-3">
-            <img src="{{album?.coverUrl}}" class="img-fluid" alt="album cover">
-            <ul>
-                <li>artists: <p *ngFor="let artist of album?.artists">{{artist.name}}</p>
-                </li>
-                <li>released on {{album?.releaseDate}}</li>
-                <li>type: {{album?.type}}</li>
-                <li>{{album?.numOfTracks}} tracks</li>
-                <li>popularity: {{album?.popoularity}}</li>
-            </ul>
-        </div>
-        <div class="col-8 p-3">
-            <iframe style="border-radius: 12px" width="100%" height="100%" title="{{album?.name}}"
-                frameborder="0" allow="encrypted-media;" loading="lazy"
-                [src]="sanitizedUrl">
-            </iframe>
+
+<div class="container-fluid p-5" *ngIf="album && sanitizedUrl">
+    <div class="row g-0 align-items-center" style="min-height:80vh;">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-lg-5">
+                    <img class="img-fluid" src="{{album.coverUrl}}" alt="album cover">
+                </div>
+                <div class="col-lg-7 px-3">
+                    <div class="card-body h-100 d-flex flex-column">
+                        <h1 class="card-title">{{album.name}}</h1>
+                        <p class="card-text m-0">By <a *ngFor="let artist of album?.artists" routerLink="/artists/{{artist.spotifyId}}" class="me-2">{{artist.name}}</a></p>
+                        <p class="card-text">Released on {{album.releaseDate}} | {{album.numOfTracks}} track(s) | Spotify Popularity Index of {{album.popoularity}} </p>
+                        <div class="flex-fill player">
+                            <iframe style="width:100%; height:100%;" [src]="sanitizedUrl" allow="encrypted-media;" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

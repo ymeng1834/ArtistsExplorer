@@ -1,0 +1,27 @@
+h1, h3{
+    font-family: 'Chonburi'
+}
+button, p, span, a, h6 {
+    font-family: 'Alexandria'
+}
+button {
+    border: 2px solid black;
+    background-color: white;
+}
+button:hover {
+    background-color: black;
+    color: white;
+}
+button:disabled {
+    border: 2px solid rgba(16,16,16,0.3);
+    pointer-events: none;
+}
+.genre {
+    color: #343a40;
+    text-decoration-color: #343a40;
+    text-decoration-thickness: 2px;
+    white-space: wrap;
+}
+.genre:hover {
+    color: black;
+}

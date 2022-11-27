@@ -1,0 +1,20 @@
+* {
+    font-family: 'Chonburi';
+    text-align: center;
+}
+
+h1 {
+    font-size: 100px;
+}
+
+a {
+    font-size: 60px;
+    color: #343a40;
+    text-decoration-color: #343a40;
+    text-decoration-thickness: 6px;
+    white-space: nowrap;
+}
+
+a:hover {
+    color: black;
+}

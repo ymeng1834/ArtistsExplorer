@@ -1,0 +1,10 @@
+nav {
+    font-family: 'Chonburi';
+    border-bottom: 1px solid black;
+}
+a {
+    color:#343a40;
+}
+a:hover {
+    color: black;
+}

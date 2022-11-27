@@ -26,6 +26,9 @@ namespace Infrastructure.Data
 		private void ConfigureGenre(EntityTypeBuilder<Genre> builder)
 		{
 			builder.Property(g => g.Name).HasMaxLength(32);
+			builder.Property(g => g.Icon).HasMaxLength(32);
+			builder.Property(g => g.Overview).HasMaxLength(4096);
+			builder.Property(g => g.ExternalUrl).HasMaxLength(2048);
 		}
 
 		private void ConfigureSubgenre(EntityTypeBuilder<Subgenre> builder)

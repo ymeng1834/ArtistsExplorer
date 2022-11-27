@@ -1,7 +1,10 @@
-import { Genre } from "./Genre";
+import { Subgenre } from "./Subgenre";
 
 export interface GenreDetails {
-    id:        number;
-    name:      string;
-    subgenres: Genre[];
+    id: number;
+    name: string;
+    icon: string;
+    overview: string;
+    externalUrl: string;
+    subgenres: Subgenre[];
 }
